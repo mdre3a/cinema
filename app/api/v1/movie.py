@@ -14,7 +14,7 @@ router = APIRouter(prefix="/movie", tags=["Movie"])
 
 @router.get("/",
             summary="read movie list",
-            description="this method returns the list of movies",
+            description=f"this method returns the list of movies (image is available via {settings.STATIC_API_PATH}/posters)",
             response_model=List[MovieShowtime])
 def list_movie(
         db: Session = Depends(deps.get_db),
