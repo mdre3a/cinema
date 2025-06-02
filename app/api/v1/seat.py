@@ -33,7 +33,7 @@ def list_seat(
                 )
     seats = crud.seat.get_reserved_seats(db=db, room_id=room_id, schedule_id=schedule_id, movie_id=movie_id, user_id=user_id)
 
-    if (current_user is None or current_user.role != "admin") and (user_id is None or current_user.id != user_id):
+    if current_user is None or ((current_user.role != "admin") and (user_id is None or current_user.id != user_id)):
         current_user_id = current_user.id if current_user is not None else None
         for seat in seats:
             if seat.user_id != current_user_id:
